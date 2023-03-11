@@ -1,14 +1,14 @@
 <template>
-  <router-link :to="{ name: 'Home' }">Home</router-link> |
-  <router-link :to="{ name: 'About' }">About</router-link> 
+  <Header />
   <router-view />
 </template>
 
 <script>
+import Header from "./components/Header"
 
 export default {
   name: "App",
-  components: {},
+  components: { Header },
   data() {
     return {
     }
@@ -26,5 +26,9 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #eee;
 }
 </style>
