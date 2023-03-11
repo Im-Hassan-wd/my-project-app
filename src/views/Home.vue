@@ -7,12 +7,18 @@
         <span>New project</span>
       </button>
     </div>
+    <div class="filter">
+      <span>Last modified</span>
+      <span>Search</span>
+    </div>
+    <Project />
   </div>
 </template>
 
 <script>
+import Project from "../components/Project.vue"
 export default {
-
+  components: { Project }
 }
 </script>
 
@@ -29,7 +35,7 @@ export default {
 .project-div h1 {
   font-size: 24px;
 }
-.project-div .headerbutton {
+.project-div .header button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,5 +45,14 @@ export default {
   color: #f5f5f5;
   background: #000;
   cursor: pointer
+}
+.filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.filter span {
+  font-size: 14px;
 }
 </style>
