@@ -8,7 +8,7 @@
       <img src="../assets/fork.svg" alt="fork">
       <small>4</small>
     </p>
-    <div></div>
+    <div class="img"></div>
     <img src="../assets/star.svg" alt="star">
   </div>
 </template>
@@ -29,5 +29,9 @@ export default {
 }
 .project-list small {
     font-size: 12px;
+}
+.project-list p, .img {
+    display: flex;
+    align-content: center;
 }
 </style>
