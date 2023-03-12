@@ -5,9 +5,9 @@
       <router-link :to="{ name: 'Favourite' }">Favourite</router-link>
     </div>
     <div class="owner">
-      <!-- icon goes here -->
+      <img src="../assets/bell.svg" alt="bell">
       <small>John Doe</small>
-      <img src="../assets/warwick.webp" alt="">
+      <img src="../assets/warwick.webp" alt="avatar">
     </div>
   </header>
 </template>

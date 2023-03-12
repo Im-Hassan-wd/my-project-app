@@ -39,6 +39,7 @@ export default {
 }
 h1 {
   font-size: 24px;
+  font-weight: 300;
 }
 .project-div .header button {
   display: flex;
