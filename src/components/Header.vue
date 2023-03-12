@@ -2,11 +2,12 @@
   <header>
     <div class="">
       <router-link :to="{ name: 'Home' }">Projetcs</router-link>
+      <router-link :to="{ name: 'Favourite' }">Favourite</router-link>
     </div>
-    <div class="">
+    <div class="owner">
       <!-- icon goes here -->
       <small>John Doe</small>
-      <!-- img goes here -->
+      <img src="../assets/warwick.webp" alt="">
     </div>
   </header>
 </template>
@@ -27,13 +28,24 @@ header {
   align-items: center;
 }
 a {
-    color: #333;
-    text-decoration: none;
-    margin: 16px 16px 16px 0;
-    padding: 14px 0;
+  color: #333;
+  text-decoration: none;
+  margin: 16px 16px 16px 0;
+  padding: 14px 0;
 }
 .router-link-active {
-    border-bottom: 2px solid rgb(190, 190, 190);
-    font-weight: bold;
+  border-bottom: 2px solid rgb(190, 190, 190);
+  font-weight: bold;
+}
+div.owner {
+  display: flex;
+  align-items: center;
+}
+img {
+  margin: 0 16px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #eee;
 }
 </style>
