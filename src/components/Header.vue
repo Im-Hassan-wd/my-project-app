@@ -5,8 +5,8 @@
       <router-link :to="{ name: 'Favourite' }">Favourite</router-link>
     </div>
     <div class="owner">
-      <img src="../assets/bell.svg" alt="bell">
-      <small>John Doe</small>
+      <button><img src="../assets/bell.svg" alt="bell"></button>
+      <button>John Doe</button>
       <img src="../assets/warwick.webp" alt="avatar">
     </div>
   </header>
@@ -47,5 +47,10 @@ img {
   height: 25px;
   border-radius: 50%;
   background: #eee;
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 </style>

@@ -11,19 +11,43 @@
       <span>Last modified <img src="../assets/down.svg" alt="expand"></span>
       <span>Search <img src="../assets/search.svg" alt="search"></span>
     </div>
-    <Project />
-    <Project />
-    <Project />
-    <Project />
-    <Project />
-    <Project />
+    <div v-for="project in projects" :key="project.id">
+      <Project :project="project" />
+    </div>
   </div>
 </template>
 
 <script>
 import Project from "../components/Project.vue"
+import { ref } from 'vue'
+
+
 export default {
-  components: { Project }
+  name: 'Home',
+  components: { Project },
+  setup() {
+    const projects = ref([])
+    const error = ref(null)
+
+    const load = async () => {
+      try {
+        let data = await fetch('https://api.github.com/users/im-hassan-wd/repos')
+        if(!data.ok) {
+          throw Error('no data available')
+        }
+        projects.value = await data.json()
+        console.log(projects)
+      }
+      catch(err) {
+        error.value = err.message
+      }
+    }
+    load()
+
+    return {
+      projects
+    }
+  }
 }
 </script>
 

@@ -2,7 +2,7 @@
   <router-link class="project-link" to="/project/1">
     <ul class="project-list">
       <li class="project-title">
-        <h4>Eventful</h4>
+        <h4>{{ project.name }}</h4>
         <small>Edited 3 minutes ago</small>
       </li>
       <li class="fork">
@@ -23,7 +23,8 @@
 
 <script>
 export default {
-
+  name: 'Project',
+  props: ['project']
 }
 </script>
 
@@ -55,7 +56,7 @@ export default {
 .fork, .img, .star {
   display: flex;
   align-content: center;
-  margin: 0 64px;
+  margin: 0 32px;
 }
 .img img{
   width: 25px;
