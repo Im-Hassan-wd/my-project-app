@@ -1,5 +1,5 @@
 <template>
-  <router-link class="project-link" to="/project/1">
+  <router-link v-for="project in projects" :key="project.id" class="project-link" :to="{ name: 'projectDetails', params: { id: project.id } }">
     <ul class="project-list">
       <li class="project-title">
         <h4>{{ project.name }}</h4>
@@ -24,7 +24,7 @@
 <script>
 export default {
   name: 'Project',
-  props: ['project']
+  props: ['projects']
 }
 </script>
 

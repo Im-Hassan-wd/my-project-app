@@ -11,41 +11,32 @@
       <span>Last modified <img src="../assets/down.svg" alt="expand"></span>
       <span>Search <img src="../assets/search.svg" alt="search"></span>
     </div>
-    <div v-for="project in projects" :key="project.id">
-      <Project :project="project" />
+    <!-- if this an error -->
+    <div v-if="error">{{ error }}</div>
+    <!-- if loading data -->
+    <div v-if="projects.length">
+      <Project :projects="projects" />
+    </div>
+    <div class="loading-div" v-else>
+      <img class="loader-img" src="../assets/loader.png" alt="lader">
     </div>
   </div>
 </template>
 
 <script>
 import Project from "../components/Project.vue"
-import { ref } from 'vue'
-
+import getProjects from '../composables/getProjects'
 
 export default {
   name: 'Home',
   components: { Project },
   setup() {
-    const projects = ref([])
-    const error = ref(null)
+    const { projects, error, load} = getProjects()
 
-    const load = async () => {
-      try {
-        let data = await fetch('https://api.github.com/users/im-hassan-wd/repos')
-        if(!data.ok) {
-          throw Error('no data available')
-        }
-        projects.value = await data.json()
-        console.log(projects)
-      }
-      catch(err) {
-        error.value = err.message
-      }
-    }
     load()
 
     return {
-      projects
+      projects, error
     }
   }
 }
@@ -89,5 +80,21 @@ h1 {
 }
 .filter img {
   width: 20px;
+}
+/* loading message */
+.loading-div {
+  text-align: center;
+}
+.loader-img {
+  width: 100px;
+  animation: loading 2s ease-in-out infinite;
+}
+@keyframes loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
