@@ -1,5 +1,5 @@
 <template>
-  <router-link v-for="project in projects" :key="project.id" class="project-link" :to="{ name: 'projectDetails', params: { id: project.id } }">
+  <router-link v-for="project in projects" :key="project.id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
     <ul class="project-list">
       <li class="project-title">
         <h4>{{ project.name }}</h4>
