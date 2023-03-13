@@ -1,10 +1,16 @@
 <template>
   <div class="project-details">
-    <button class="back">
+    <button @click="goBack" class="back">
       <img src="../assets/back.svg" alt="back" />
     </button>
+    <!-- if this an error -->
+    <div v-if="error">{{ error }}</div>
+    <!-- if loading data -->
+    <!-- <div v-if="!project.length" class="loading-div">
+      <img class="loader-img" src="../assets/loader.png" alt="lader">
+    </div> -->
     <div class="">
-      <h1>Create component button web</h1>
+      <h1>{{ project.name }}</h1>
       <ul>
         <li>
             <span class="key">Status</span>
@@ -21,63 +27,25 @@
         <li>
             <span class="key">Languages</span>
             <span class="val">
-              <span class="pill">Html</span>
-              <span class="pill">Css</span>
-              <span class="pill">javascript</span>
-              <span class="pill">UI</span>
+              <span v-for="language in languages" :key="language" class="pill">{{ language }}</span>
             </span>
         </li>
       </ul>
       <div class="">
         <h3>Description</h3>
-        <p>On the main page there several banners displayed. The latest main product is located at the top. The need for  a call to action must be considered when it is on the top web benner. Don't forget to enter categories too</p>
+        <p>{{ project.description }}</p>
 
         <h3>Code</h3>   
         <div class="code">
           <div class="banner">
             <div class="">
-              <span><img src="../assets/warwick.webp" alt="john doe"></span>
-              <span>John Doe</span>
+              <span><img :src="project.owner.avatar_url" :alt="project.owner.login"></span>
+              <span>{{ project.owner.login }}</span>
             </div>
           </div>
           <ul>
-            <li>
-              <span class="fold">Componets</span>
-              <span>clean up</span>
-              <span>2 months ago</span>
-            </li>
-            <li>
-              <span class="fold">Componets</span>
-              <span>clean up</span>
-              <span>2 months ago</span>
-            </li>
-            <li>
-              <span class="fold">Componets</span>
-              <span>clean up</span>
-              <span>2 months ago</span>
-            </li>
-            <li>
-              <span class="fold">Componets</span>
-              <span>clean up</span>
-              <span>2 months ago</span>
-            </li>
-            <li>
-              <span class="fold">Componets</span>
-              <span>clean up</span>
-              <span>2 months ago</span>
-            </li>
-            <li>
-              <span class="fold">Componets</span>
-              <span>clean up</span>
-              <span>2 months ago</span>
-            </li>
-            <li>
-              <span class="fold">Componets</span>
-              <span>clean up</span>
-              <span>2 months ago</span>
-            </li>
-            <li>
-              <span class="fold">Componets</span>
+            <li v-for="content in contents" :key="content.name">
+              <span class="fold">{{ content.name}}</span>
               <span>clean up</span>
               <span>2 months ago</span>
             </li>
@@ -89,8 +57,32 @@
 </template>
 
 <script>
-export default {
+import { ref } from 'vue'
+import { useRoute, useRouter} from 'vue-router'
+import getProjects from '../composables/getProjects'
 
+export default {
+  name: 'ProjectDetails',
+  setup() {
+    const route = useRoute()
+    const router = useRouter()
+    const goBack = () => router.go(-1)
+    // fetching data
+    const url = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}`
+    const contentUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/contents/`
+    const languageUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/languages/`
+    const { projects: project, error, load} = getProjects(url)
+    const { projects: contents, load: loadContent} = getProjects(contentUrl)
+    const { projects: languages, load: loadLanguage} = getProjects(languageUrl)
+
+    load()
+    loadContent()
+    loadLanguage()
+
+    return { 
+      goBack, load, loadContent, loadLanguage, project, error, contents, languages 
+    }
+  }
 }
 </script>
 

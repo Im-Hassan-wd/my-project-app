@@ -17,13 +17,14 @@
     <div v-if="projects.length">
       <Project :projects="projects" />
     </div>
-    <div class="loading-div" v-else>
+    <div v-else class="loading-div">
       <img class="loader-img" src="../assets/loader.png" alt="lader">
     </div>
   </div>
 </template>
 
 <script>
+import { useRoute, useRouter} from 'vue-router'
 import Project from "../components/Project.vue"
 import getProjects from '../composables/getProjects'
 
@@ -31,13 +32,13 @@ export default {
   name: 'Home',
   components: { Project },
   setup() {
-    const { projects, error, load} = getProjects()
+    const route = useRoute()
+    const url = 'https://api.github.com/users/im-hassan-wd/repos'
+    const { projects, error, load} = getProjects(url)
 
     load()
 
-    return {
-      projects, error
-    }
+    return { projects, error }
   }
 }
 </script>

@@ -1,12 +1,12 @@
 import { ref } from 'vue'
 
-const getProjects = () => {
+const getProjects = (url) => {
   const projects = ref([])
   const error = ref(null)
 
   const load = async () => {
     try {
-      let data = await fetch('https://api.github.com/users/im-hassan-wd/repos')
+      let data = await fetch(url)
       if(!data.ok) {
         throw Error('no data available')
       }
