@@ -45,7 +45,11 @@
           </div>
           <ul>
             <li v-for="content in contents" :key="content.name">
-              <span class="fold">{{ content.name}}</span>
+              <span class="fold">
+                <img v-if="content.type === 'dir'" src="../assets/folder.svg" alt="folder">
+                <img v-if="content.type === 'file'" src="../assets/file.svg" alt="file">
+                {{ content.name}}
+              </span>
               <span>clean up</span>
               <span>2 months ago</span>
             </li>
@@ -118,16 +122,6 @@ ul {
   list-style: none;
 }
 .pill {
-  display: inline-block;
-  margin: 0px 10px 0 0;
-  padding: 6px 12px;
-  background: #fff;
-  border-radius: 20px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  font-weight: bold;
-  color: #333;
-  text-transform: uppercase;
 }
 .code {
   border: 1px solid #d3d3d3;
@@ -158,6 +152,12 @@ ul {
   background: #eee;
 }
 .fold {
-    font-weight: bold;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+
+}
+.fold img {
+  margin-left: 8px;
 }
 </style>

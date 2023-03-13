@@ -3,17 +3,14 @@
     <ul class="project-list">
       <li class="project-title">
         <h4>{{ project.name }}</h4>
-        <small>Edited 3 minutes ago</small>
+        <small>Edited {{ project.updated_at }}</small>
       </li>
       <li class="fork">
         <img src="../assets/fork.svg" alt="fork">
-        <small>4</small>
+        <small>{{ project.stargazers_count }}</small>
       </li>
-      <li class="img">
-          <img src="../assets/warwick.webp" alt="">
-          <img src="../assets/warwick.webp" alt="">
-          <img src="../assets/warwick.webp" alt="">
-      </li>
+      <li v-if="project.language" class="pill">{{ project.language }}</li>
+      <li v-else class="pill">null</li>
       <li class="star">
           <img src="../assets/star.svg" alt="star">
       </li>
@@ -52,6 +49,18 @@ export default {
 }
 .project-list small {
   font-size: 12px;
+}
+.pill {
+  display: inline-block;
+  margin: 0px 10px 0 0;
+  padding: 6px 12px;
+  background: #fff;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
 }
 .fork, .img, .star {
   display: flex;
