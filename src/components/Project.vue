@@ -10,7 +10,7 @@
         <small>{{ project.stargazers_count }}</small>
       </li>
       <li v-if="project.language" class="pill">{{ project.language }}</li>
-      <li v-else class="pill">null</li>
+      <li v-else class="pill">...</li>
       <li class="star">
           <img src="../assets/star.svg" alt="star">
       </li>
@@ -61,11 +61,11 @@ export default {
   font-weight: bold;
   color: #333;
   text-transform: uppercase;
+  margin-left: auto;
 }
 .fork, .img, .star {
   display: flex;
   align-content: center;
-  margin: 0 32px;
 }
 .img img{
   width: 25px;

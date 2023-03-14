@@ -13,27 +13,33 @@
       <h1>{{ project.name }}</h1>
       <ul>
         <li>
-            <span class="key">Status</span>
-            <span class="val">In progress</span>
+            <span class="key">Last commit</span>
+            <span class="val"><strong>message: </strong> {{ commits[0].commit.message }} <strong>by: </strong> {{ commits[0].commit.author.email }} </span>
+        </li>
+        <li>
+            <span class="key">Created at</span>
+            <span class="val">{{ project.created_at }}</span>
         </li>
         <li>
             <span class="key">Asignee</span>
-            <span class="val">In progress</span>
-        </li>
-        <li>
-            <span class="key">Due date</span>
-            <span class="val">Nov 20 23</span>
-        </li>
-        <li>
-            <span class="key">Languages</span>
+            <span class="key">{{ assignees }}</span>
             <span class="val">
-              <span v-for="language in languages" :key="language" class="pill">{{ language }}</span>
+              <img class="assignee" src="../assets/warwick.webp" alt="">
+              <img class="assignee" src="../assets/warwick.webp" alt="">
+              <img class="assignee" src="../assets/warwick.webp" alt="">
+            </span>
+        </li>
+        <li>
+            <span class="key">Tools</span>
+            <span v-for="language in Object.keys(languages)" :key="language" class="val">
+              <span class="pill">{{ language }}</span>
             </span>
         </li>
       </ul>
       <div class="">
         <h3>Description</h3>
-        <p>{{ project.description }}</p>
+        <p v-if="project.description === null">This particular project doesn't have a description.</p>
+        <p v-else>{{ project.description }}</p>
 
         <h3>Code</h3>   
         <div class="code">
@@ -50,8 +56,6 @@
                 <img v-if="content.type === 'file'" src="../assets/file.svg" alt="file">
                 {{ content.name}}
               </span>
-              <span>clean up</span>
-              <span>2 months ago</span>
             </li>
           </ul>
         </div>
@@ -63,7 +67,7 @@
 <script>
 import { ref } from 'vue'
 import { useRoute, useRouter} from 'vue-router'
-import getProjects from '../composables/getProjects'
+import getData from '../composables/getData'
 
 export default {
   name: 'ProjectDetails',
@@ -71,20 +75,27 @@ export default {
     const route = useRoute()
     const router = useRouter()
     const goBack = () => router.go(-1)
+    
     // fetching data
     const url = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}`
     const contentUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/contents/`
-    const languageUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/languages/`
-    const { projects: project, error, load} = getProjects(url)
-    const { projects: contents, load: loadContent} = getProjects(contentUrl)
-    const { projects: languages, load: loadLanguage} = getProjects(languageUrl)
+    const languageUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/languages`
+    const assigneeUrl = `https://api.github.com/repos/Im-Hassan-wd/404-Not-found/assignees`
+    const commitUrl = `https://api.github.com/repos/Im-Hassan-wd/404-Not-found/commits`
+    const { projects: project, error, load} = getData(url)
+    const { projects: contents, load: loadContent} = getData(contentUrl)
+    const { projects: languages, load: loadLanguage} = getData(languageUrl)
+    const { projects: assignees, load: loadAssignee} = getData(assigneeUrl)
+    const { projects: commits, load: loadCommit} = getData(commitUrl)
 
     load()
     loadContent()
     loadLanguage()
+    loadCommit()
 
     return { 
-      goBack, load, loadContent, loadLanguage, project, error, contents, languages 
+      goBack, load, loadContent, loadLanguage, loadAssignee, loadCommit,
+      project, error, contents, languages, assignees, commits
     }
   }
 }
@@ -109,10 +120,9 @@ export default {
 }
 h1, h3{
   margin: 24px 0;
-  font-weight: 300;
-  font-size: 40px;
+  font-weight: 500;
   max-width: 450px;
-  line-height: 45px;
+  font-size: 30px;
 }
 h3 {
   font-size: 25px;
@@ -121,7 +131,12 @@ h3 {
 ul {
   list-style: none;
 }
-.pill {
+img.assignee {
+  margin-left: -10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff;
 }
 .code {
   border: 1px solid #d3d3d3;
@@ -152,12 +167,11 @@ ul {
   background: #eee;
 }
 .fold {
-  font-weight: bold;
   display: flex;
   align-items: center;
 
 }
 .fold img {
-  margin-left: 8px;
+  margin-right: 8px;
 }
 </style>

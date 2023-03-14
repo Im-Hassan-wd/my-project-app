@@ -6,8 +6,8 @@
     </div>
     <div class="owner">
       <button><img src="../assets/bell.svg" alt="bell"></button>
-      <button>John Doe</button>
-      <img src="../assets/warwick.webp" alt="avatar">
+      <button>Im-Hassan-wd</button>
+      <img src="https://avatars.githubusercontent.com/u/82989580?v=4" alt="avatar">
     </div>
   </header>
 </template>

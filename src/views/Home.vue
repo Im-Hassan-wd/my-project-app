@@ -24,9 +24,9 @@
 </template>
 
 <script>
-import { useRoute, useRouter} from 'vue-router'
+import { useRoute } from 'vue-router'
 import Project from "../components/Project.vue"
-import getProjects from '../composables/getProjects'
+import getData from '../composables/getData'
 
 export default {
   name: 'Home',
@@ -34,7 +34,7 @@ export default {
   setup() {
     const route = useRoute()
     const url = 'https://api.github.com/users/im-hassan-wd/repos'
-    const { projects, error, load} = getProjects(url)
+    const { projects, error, load} = getData(url)
 
     load()
 
