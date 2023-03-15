@@ -12,7 +12,7 @@
       <span>Search <img src="../assets/search.svg" alt="search"></span>
     </div>
     <!-- if this an error -->
-    <div v-if="error">{{ error }}</div>
+    <div v-if="error">{{ error }}</div> 
     <!-- if loading data -->
     <div class="project-wrapper" v-if="projects.length">
       <Project :projects="paginatedData" />
@@ -20,14 +20,20 @@
     <div v-else class="loading-div">
       <img class="loader-img" src="../assets/loader.png" alt="lader">
     </div>
-  <button @click="backPage">prev</button>
-  <button v-for="item in Math.ceil(data.length / perPage)" :key="item" @click="() => goToPage(item)"> {{ item }}</button>
-  <button @click="nextPage">next</button>
+    <div id="controls">
+      <button @click="backPage">prev</button>
+      <button 
+        v-for="item in Math.ceil(data.length / perPage)" 
+        :key="item" 
+        @click="() => goToPage(item)"> 
+      {{ item }}
+      </button>
+      <button @click="nextPage">next</button>
+   </div>
   </div>
 </template>
 
 <script>
-import { useRoute } from 'vue-router'
 import Project from "../components/Project.vue"
 // composables
 import getData from '../composables/getData'
@@ -38,7 +44,6 @@ export default {
   name: 'Home',
   components: { Project },
   setup() {
-    const route = useRoute()
     const url = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300'
     const { projects, error, load} = getData(url)
 
@@ -93,6 +98,29 @@ h1 {
 .filter img {
   width: 20px;
 }
+#controls {
+  padding: 8px 0;
+  box-shadow: 2px 2px 10px #d3d3d3;
+  background: #fff;
+  margin-top: 24px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+#controls button {
+  padding: 7px 16px;
+  margin: 8px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #d3d3d3;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+#controls button:hover {
+  background: #eee;
+}
 /* loading message */
 .loading-div {
   text-align: center;
@@ -107,6 +135,12 @@ h1 {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .project-div {
+    padding: 0 16px;
   }
 }
 </style>

@@ -5,15 +5,17 @@
         <h4>{{ project.name }}</h4>
         <small>Edited {{ project.updated_at }}</small>
       </li>
-      <li class="fork">
-        <img src="../assets/fork.svg" alt="fork">
-        <small>{{ project.stargazers_count }}</small>
-      </li>
-      <li v-if="project.language" class="pill">{{ project.language }}</li>
-      <li v-else class="pill">...</li>
-      <li class="star">
+      <div>
+        <li class="fork">
+          <img src="../assets/fork.svg" alt="fork">
+          <small>{{ project.stargazers_count }}</small>
+        </li>
+        <li v-if="project.language" class="pill">{{ project.language }}</li>
+        <li v-else class="pill">...</li>
+        <li class="star">
           <img src="../assets/star.svg" alt="star">
-      </li>
+        </li>
+      </div>
     </ul>
   </router-link>
 </template>
@@ -44,11 +46,12 @@ export default {
   background: #333;
   color: #fff;
 }
-.project-title {
-  margin-right: auto;
-}
 .project-list small {
   font-size: 12px;
+}
+.project-list li div {
+  display: flex;
+  align-items: center;
 }
 .pill {
   display: inline-block;
@@ -61,7 +64,6 @@ export default {
   font-weight: bold;
   color: #333;
   text-transform: uppercase;
-  margin-left: auto;
 }
 .fork, .img, .star {
   display: flex;

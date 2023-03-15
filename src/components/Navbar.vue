@@ -53,4 +53,12 @@ button {
   border: none;
   cursor: pointer;
 }
+@media (max-width: 640px) {
+  header {
+    padding: 0 16px;
+  }
+  .owner button {
+    display: none;
+  }
+}
 </style>
