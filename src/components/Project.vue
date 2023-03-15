@@ -49,13 +49,15 @@ export default {
 .project-list small {
   font-size: 12px;
 }
-.project-list li div {
+.project-list div {
   display: flex;
   align-items: center;
+  max-width: 500px;
+  justify-content: space-between;
 }
 .pill {
   display: inline-block;
-  margin: 0px 10px 0 0;
+  margin: 0px 16px;
   padding: 6px 12px;
   background: #fff;
   border-radius: 20px;

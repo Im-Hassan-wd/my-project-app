@@ -59,6 +59,7 @@ export default {
 <style>
 .project-wrapper {
   margin: 32px 0;
+  margin-bottom: 128px;
 }
 .project-div {
   padding: 0 32px;
@@ -139,6 +140,9 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .project-wrapper {
+    margin-bottom: 160px;
+  }
   .project-div {
     padding: 0 16px;
   }
