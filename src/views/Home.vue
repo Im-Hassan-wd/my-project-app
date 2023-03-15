@@ -80,9 +80,9 @@ h1 {
   align-items: center;
   width: 128px;
   height: 40px;
-  border: 1px solid #000;
+  border: 1px solid #333;
   color: #f5f5f5;
-  background: #000;
+  background: #333;
   cursor: pointer
 }
 .filter {
