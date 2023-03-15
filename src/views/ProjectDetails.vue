@@ -6,10 +6,10 @@
     <!-- if this an error -->
     <div v-if="error">{{ error }}</div>
     <!-- if loading data -->
-    <!-- <div v-if="!project.length" class="loading-div">
+    <div v-if="project.length === '0'" class="loading-div">
       <img class="loader-img" src="../assets/loader.png" alt="lader">
-    </div> -->
-    <div class="">
+    </div>
+    <div else class="">
       <h1>{{ project.name }}</h1>
       <ul>
         <li>
@@ -41,7 +41,7 @@
         <p v-if="project.description === null">This particular project doesn't have a description.</p>
         <p v-else>{{ project.description }}</p>
 
-        <h3>Code</h3>   
+        <h3>Overview</h3>   
         <div class="code">
           <div class="banner">
             <div class="">
@@ -52,10 +52,10 @@
           <ul>
             <li v-for="content in contents" :key="content.name">
               <span class="fold">
-                <img v-if="content.type === 'dir'" src="../assets/folder.svg" alt="folder">
-                <img v-if="content.type === 'file'" src="../assets/file.svg" alt="file">
-                {{ content.name}}
-              </span>
+              <img v-if="content.type === 'dir'" src="../assets/folder.svg" alt="folder">
+              <img v-if="content.type === 'file'" src="../assets/file.svg" alt="file">
+              {{ content.name}}
+            </span>
             </li>
           </ul>
         </div>
@@ -78,10 +78,10 @@ export default {
     
     // fetching data
     const url = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}`
-    const contentUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/contents/`
+    const contentUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/contents`
     const languageUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/languages`
     const assigneeUrl = `https://api.github.com/repos/Im-Hassan-wd/404-Not-found/assignees`
-    const commitUrl = `https://api.github.com/repos/Im-Hassan-wd/404-Not-found/commits`
+    const commitUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/commits`
     const { projects: project, error, load} = getData(url)
     const { projects: contents, load: loadContent} = getData(contentUrl)
     const { projects: languages, load: loadLanguage} = getData(languageUrl)
@@ -148,6 +148,10 @@ img.assignee {
   align-items: center;
   padding: 8px;
   border-top: 1px solid #d3d3d3;
+  transition: all 0.5s ease;
+}
+.code ul li:hover {
+  background: #fff;
 }
 .banner {
   background: #fff;

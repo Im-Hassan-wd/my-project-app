@@ -14,36 +14,47 @@
     <!-- if this an error -->
     <div v-if="error">{{ error }}</div>
     <!-- if loading data -->
-    <div v-if="projects.length">
-      <Project :projects="projects" />
+    <div class="project-wrapper" v-if="projects.length">
+      <Project :projects="paginatedData" />
     </div>
     <div v-else class="loading-div">
       <img class="loader-img" src="../assets/loader.png" alt="lader">
     </div>
+  <button @click="backPage">prev</button>
+  <button v-for="item in Math.ceil(data.length / perPage)" :key="item" @click="() => goToPage(item)"> {{ item }}</button>
+  <button @click="nextPage">next</button>
   </div>
 </template>
 
 <script>
 import { useRoute } from 'vue-router'
 import Project from "../components/Project.vue"
+// composables
 import getData from '../composables/getData'
+// pagination
+import handlePagination from "../handlePagination.js";
 
 export default {
   name: 'Home',
   components: { Project },
   setup() {
     const route = useRoute()
-    const url = 'https://api.github.com/users/im-hassan-wd/repos'
+    const url = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300'
     const { projects, error, load} = getData(url)
+
+    const handlePaginationValue = handlePagination(projects);
 
     load()
 
-    return { projects, error }
+    return { projects, error,  ...handlePaginationValue  }
   }
 }
 </script>
 
 <style>
+.project-wrapper {
+  margin: 32px 0;
+}
 .project-div {
   padding: 0 32px;
 }
