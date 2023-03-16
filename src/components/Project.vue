@@ -1,5 +1,5 @@
 <template>
-  <router-link v-for="project in projects" :key="project.id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
+  <router-link v-for="project in projects" :key="project.node_id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
     <ul class="project-list">
       <li class="project-title">
         <h4>{{ project.name }}</h4>
@@ -59,12 +59,12 @@ export default {
   display: inline-block;
   margin: 0px 16px;
   padding: 6px 12px;
-  background: #fff;
+  background: #999;
   border-radius: 20px;
   font-size: 12px;
   letter-spacing: 1px;
   font-weight: bold;
-  color: #333;
+  color: #fff;
   text-transform: uppercase;
 }
 .fork, .img, .star {

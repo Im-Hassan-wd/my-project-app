@@ -14,20 +14,13 @@
       <ul>
         <li>
             <span class="key">Last commit</span>
-            <span class="val"><strong>message: </strong> {{ commits[0].commit.message }} <strong>by: </strong> {{ commits[0].commit.author.email }} </span>
+            <span v-if="commits[0].commit.message " class="val"><strong>message: </strong> {{ commits[0].commit.message }} <strong>by: </strong> {{ commits[0].commit.author.email }} </span>
         </li>
         <li>
             <span class="key">Created at</span>
             <span class="val">{{ project.created_at }}</span>
         </li>
         <li>
-            <span class="key">Asignee</span>
-            <span class="key">{{ assignees }}</span>
-            <span class="val">
-              <img class="assignee" src="../assets/warwick.webp" alt="">
-              <img class="assignee" src="../assets/warwick.webp" alt="">
-              <img class="assignee" src="../assets/warwick.webp" alt="">
-            </span>
         </li>
         <li>
             <span class="key">Tools</span>
@@ -80,7 +73,7 @@ export default {
     const url = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}`
     const contentUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/contents`
     const languageUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/languages`
-    const assigneeUrl = `https://api.github.com/repos/Im-Hassan-wd/404-Not-found/assignees`
+    const assigneeUrl = `https://api.github.com/repos/Im-Hassan-wd/github-user-profile/assignees`
     const commitUrl = `https://api.github.com/repos/Im-Hassan-wd/${route.params.id}/commits`
     const { projects: project, error, load} = getData(url)
     const { projects: contents, load: loadContent} = getData(contentUrl)
@@ -130,6 +123,9 @@ h3 {
 }
 ul {
   list-style: none;
+}
+.pill {
+  margin: 0 8px 0 0;
 }
 img.assignee {
   margin-left: -10px;
