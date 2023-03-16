@@ -7,10 +7,6 @@
         <span>New project</span>
       </button>
     </div>
-    <div class="filter">
-      <span>Last modified <img src="../assets/down.svg" alt="expand"></span>
-      <span>Search <img src="../assets/search.svg" alt="search"></span>
-    </div>
     <!-- if this an error -->
     <div v-if="error">{{ error }}</div> 
     <!-- if loading data -->

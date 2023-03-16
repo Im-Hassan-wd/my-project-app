@@ -1,5 +1,9 @@
 <template>
-  <input type="text" v-model="search">
+  <div class="filter">
+    <span>Last modified <img src="../assets/down.svg" alt="expand"></span>
+    <span @click="setShowInput">Search <img src="../assets/search.svg" alt="search"></span>
+  </div>
+  <input v-if="showInput" type="text" v-model="search">
   <router-link v-for="project in matchingProjects" :key="project.node_id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
     <ul class="project-list">
       <li class="project-title">
@@ -28,12 +32,18 @@ export default {
   name: 'Project',
   props: ['projects'],
   setup(props) {
+    const showInput = ref(false)
     const search = ref('')
     const names = ref(['patrick', 'huzi', 'sandy', 'squidward', 'spongebob', 'warwick'])
     const matchingProjects = computed(() => {
-      return props.projects.filter(project => project.name.includes(search.value))
+      return props.projects.filter(project => project.name.toLowerCase().includes(search.value))
     })
-    return { names, search, matchingProjects };
+    const setShowInput = () => {
+      showInput.value = !showInput.value
+    }
+
+
+    return { names, search, matchingProjects, showInput, setShowInput };
   }
 }
 </script>
@@ -65,6 +75,13 @@ export default {
   align-items: center;
   max-width: 500px;
   justify-content: space-between;
+}
+input {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #d3d3d3;
+  margin: 8px 0;
+  border-radius: 10px;
 }
 .pill {
   display: inline-block;
