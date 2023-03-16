@@ -1,6 +1,6 @@
 <template>
-  <input type="text" name="" id="">
-  <router-link v-for="project in projects" :key="project.node_id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
+  <input type="text" v-model="search">
+  <router-link v-for="project in matchingProjects" :key="project.node_id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
     <ul class="project-list">
       <li class="project-title">
         <h4>{{ project.name }}</h4>
@@ -22,9 +22,19 @@
 </template>
 
 <script>
+import { computed, ref } from 'vue'
+
 export default {
   name: 'Project',
-  props: ['projects']
+  props: ['projects'],
+  setup(props) {
+    const search = ref('')
+    const names = ref(['patrick', 'huzi', 'sandy', 'squidward', 'spongebob', 'warwick'])
+    const matchingProjects = computed(() => {
+      return props.projects.filter(project => project.name.includes(search.value))
+    })
+    return { names, search, matchingProjects };
+  }
 }
 </script>
 
