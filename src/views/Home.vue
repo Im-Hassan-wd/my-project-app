@@ -11,7 +11,7 @@
     <div v-if="error">{{ error }}</div> 
     <!-- if loading data -->
     <div class="project-wrapper" v-if="projects.length">
-      <Project :projects="paginatedData" />
+      <Project :projects="paginatedData" @toggleUrl="filter" />
     </div>
     <div v-else class="loading-div">
       <img class="loader-img" src="../assets/loader.png" alt="lader">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import Project from "../components/Project.vue"
 // composables
 import getData from '../composables/getData'
@@ -40,14 +41,18 @@ export default {
   name: 'Home',
   components: { Project },
   setup() {
-    const url = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300'
-    const { projects, error, load} = getData(url)
+    let url = ref('https://api.github.com/users/Im-Hassan-wd/repos?per_page=300&sort=created')
+    const filter = () => {
+      url.value = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300'
+      console.log(url.value)
+    }
+    const { projects, error, load} = getData(url.value)
 
     const handlePaginationValue = handlePagination(projects);
 
     load()
 
-    return { projects, error,  ...handlePaginationValue  }
+    return { projects, error, filter, ...handlePaginationValue  }
   }
 }
 </script>
@@ -85,7 +90,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 .filter span {
   font-size: 14px;

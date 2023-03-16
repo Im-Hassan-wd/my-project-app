@@ -1,9 +1,13 @@
 <template>
   <div class="filter">
-    <span>Last modified <img src="../assets/down.svg" alt="expand"></span>
+    <!-- <span>Last modified <img src="../assets/down.svg" alt="expand"></span> -->
+    <select @change="$emit('toggleUrl')" name="" id="" v-model="select">
+      <option value="Last modified">Last modified</option>
+      <option value="Ascending">Ascending</option>
+    </select>
     <span @click="setShowInput">Search <img src="../assets/search.svg" alt="search"></span>
   </div>
-  <input v-if="showInput" type="text" v-model="search">
+  <input v-if="showInput" type="text" v-model="search" placeholder="Find a project...">
   <router-link v-for="project in matchingProjects" :key="project.node_id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
     <ul class="project-list">
       <li class="project-title">
@@ -26,24 +30,29 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue'
+import { computed, ref, } from 'vue'
 
 export default {
   name: 'Project',
   props: ['projects'],
-  setup(props) {
+  emits: ['toggleUrl'],
+  setup(props, { emit }) {
+    // data
     const showInput = ref(false)
     const search = ref('')
-    const names = ref(['patrick', 'huzi', 'sandy', 'squidward', 'spongebob', 'warwick'])
+    const select = ref('Last modified')
+    // functions
     const matchingProjects = computed(() => {
       return props.projects.filter(project => project.name.toLowerCase().includes(search.value))
     })
     const setShowInput = () => {
       showInput.value = !showInput.value
     }
+    const toggle = () => {
+      emit('toggleUrl')
+    }
 
-
-    return { names, search, matchingProjects, showInput, setShowInput };
+    return { search, matchingProjects, select, showInput, setShowInput, toggle };
   }
 }
 </script>
