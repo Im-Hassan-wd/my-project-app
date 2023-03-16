@@ -24,6 +24,10 @@
             <td class="val">{{ project.created_at }}</td>
           </tr>
           <tr>
+            <td class="key">Owner</td>
+            <td class="val"><img class="owner" :src="project.owner.avatar_url" :alt="project.owner.id"></td>
+          </tr>
+          <tr>
             <td class="key">Tools</td>
             <td class="val">
               <span v-for="language in Object.keys(languages)" :key="language">
@@ -42,8 +46,8 @@
         <div class="code">
           <div class="banner">
             <div class="">
-              <span><img :src="project.owner.avatar_url" :alt="project.owner.login"></span>
-              <span>{{ project.owner.login }}</span>
+              <span><img :src="commits[0].committer.avatar_url" :alt="commits[0].committer.login"></span>
+              <span>{{ commits[0].committer.login }}</span>
             </div>
           </div>
           <ul>
@@ -134,10 +138,9 @@ th {
 .pill {
   margin: 0 8px 0 0;
 }
-img.assignee {
-  margin-left: -10px;
-  width: 25px;
-  height: 25px;
+img.owner{
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: #fff;
 }

@@ -1,4 +1,5 @@
 <template>
+  <input type="text" name="" id="">
   <router-link v-for="project in projects" :key="project.node_id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
     <ul class="project-list">
       <li class="project-title">
@@ -8,7 +9,7 @@
       <div>
         <li class="fork">
           <img src="../assets/fork.svg" alt="fork">
-          <small>{{ project.stargazers_count }}</small>
+          <small>{{ project.forks_count }}</small>
         </li>
         <li v-if="project.language" :class=" [project.language ? project.language.toLowerCase() : '', 'pill']">{{ project.language }}</li>
         <li v-else class="pill">...</li>
@@ -94,5 +95,11 @@ export default {
 }
 .php {
   background-color: #4F5D95;
+}
+.python {
+  background-color: #3572A5;
+}
+.shell {
+  background: #89e051;
 }
 </style>
