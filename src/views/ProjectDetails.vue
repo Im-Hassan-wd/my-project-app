@@ -11,24 +11,6 @@
     </div>
     <div else class="">
       <h1>{{ project.name }}</h1>
-      <!-- <ul>
-        <li>
-            <span class="key">Last commit</span>
-            <span v-if="commits[0].commit.message " class="val"><strong>message: </strong> {{ commits[0].commit.message }} <strong>by: </strong> {{ commits[0].commit.author.email }} </span>
-        </li>
-        <li>
-            <span class="key">Created at</span>
-            <span class="val">{{ project.created_at }}</span>
-        </li>
-        <li>
-        </li>
-        <li>
-            <span class="key">Tools</span>
-            <span v-for="language in Object.keys(languages)" :key="language" class="val">
-              <span class="pill">{{ language }}</span>
-            </span>
-        </li>
-      </ul> -->
       <table>
         <thead>
           <tr>
@@ -45,7 +27,7 @@
             <td class="key">Tools</td>
             <td class="val">
               <span v-for="language in Object.keys(languages)" :key="language">
-                <span class="pill">{{ language }}</span>
+                <span :class=" [language ? language.toLowerCase() : '', 'pill']">{{ language }}</span>
               </span>
             </td>
           </tr>
@@ -80,7 +62,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import { useRoute, useRouter} from 'vue-router'
 import getData from '../composables/getData'
 

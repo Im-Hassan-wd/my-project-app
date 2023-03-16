@@ -10,7 +10,7 @@
           <img src="../assets/fork.svg" alt="fork">
           <small>{{ project.stargazers_count }}</small>
         </li>
-        <li v-if="project.language" class="pill">{{ project.language }}</li>
+        <li v-if="project.language" :class=" [project.language ? project.language.toLowerCase() : '', 'pill']">{{ project.language }}</li>
         <li v-else class="pill">...</li>
         <li class="star">
           <img src="../assets/star.svg" alt="star">
@@ -59,13 +59,13 @@ export default {
   display: inline-block;
   margin: 0px 16px;
   padding: 6px 12px;
-  background: #999;
   border-radius: 20px;
   font-size: 12px;
   letter-spacing: 1px;
   font-weight: bold;
   color: #fff;
   text-transform: uppercase;
+  background: #999;
 }
 .fork, .img, .star {
   display: flex;
@@ -76,5 +76,23 @@ export default {
   height: 25px;
   border-radius: 50%;
   background: #eee;
+}
+.javascript{
+  background: #f1e05a;
+}
+.css {
+  background: #563d7c;
+}
+.vue {
+  background: #41b883;
+}
+.html {
+  background: #e34c26;
+}
+.ejs {
+  background: #a91e50;
+}
+.php {
+  background-color: #4F5D95;
 }
 </style>
