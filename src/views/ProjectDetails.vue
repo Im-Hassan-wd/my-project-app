@@ -11,7 +11,7 @@
     </div>
     <div else class="">
       <h1>{{ project.name }}</h1>
-      <ul>
+      <!-- <ul>
         <li>
             <span class="key">Last commit</span>
             <span v-if="commits[0].commit.message " class="val"><strong>message: </strong> {{ commits[0].commit.message }} <strong>by: </strong> {{ commits[0].commit.author.email }} </span>
@@ -28,7 +28,29 @@
               <span class="pill">{{ language }}</span>
             </span>
         </li>
-      </ul>
+      </ul> -->
+      <table>
+        <thead>
+          <tr>
+            <th class="key">Status</th>
+            <th class="val"><strong>message: </strong> {{ commits[0].commit.message }} <strong>by: </strong> {{ commits[0].commit.author.email }} </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="key">Created at</td>
+            <td class="val">{{ project.created_at }}</td>
+          </tr>
+          <tr>
+            <td class="key">Tools</td>
+            <td class="val">
+              <span v-for="language in Object.keys(languages)" :key="language">
+                <span class="pill">{{ language }}</span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       <div class="">
         <h3>Description</h3>
         <p v-if="project.description === null">This particular project doesn't have a description.</p>
@@ -123,6 +145,10 @@ h3 {
 }
 ul {
   list-style: none;
+}
+th {
+  text-align: left;
+  font-weight: normal;
 }
 .pill {
   margin: 0 8px 0 0;
