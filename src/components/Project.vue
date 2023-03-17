@@ -1,10 +1,10 @@
 <template>
   <div class="filter">
     <!-- <span>Last modified <img src="../assets/down.svg" alt="expand"></span> -->
-    <select @change="$emit('toggleUrl')" v-model="select">
+    <!-- <select @change="$emit('toggleUrl')" v-model="select">
       <option value="Last modified">Last modified</option>
       <option value="Ascending">Ascending</option>
-    </select>
+    </select> -->
     <span class="search" @click="setShowInput">Search <img src="../assets/search.svg" alt="search"></span>
   </div>
   <input v-if="showInput" type="text" v-model="search" placeholder="Find a project...">

@@ -1,4 +1,5 @@
 <template>
+  <!-- <router-view></router-view> -->
   <div class="project-div">
     <div class="header">
       <h1>Projects</h1>

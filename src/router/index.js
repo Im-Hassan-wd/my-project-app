@@ -10,19 +10,25 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    children: [
-      {
-        path: '/project/:id',
-        name: 'ProjectDetails',
-        component: ProjectDetails,
-        props: true
-      },
-    ],
+    // children: [
+    //   {
+    //     path: '/project/:id',
+    //     name: 'ProjectDetails',
+    //     component: ProjectDetails,
+    //     props: true
+    //   },
+    // ],
   },
   {
     path: '/favourite-projects',
     name: 'Favourite',
     component: Favourite
+  },
+  {
+    path: '/project/:id',
+    name: 'ProjectDetails',
+    component: ProjectDetails,
+    props: true
   },
   // redirect
   {
