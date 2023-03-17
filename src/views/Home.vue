@@ -85,9 +85,9 @@ h1 {
   align-items: center;
   width: 128px;
   height: 40px;
-  border: 1px solid #333;
+  border: 1px solid var(--primary);
   color: #f5f5f5;
-  background: #333;
+  background: var(--primary);
   cursor: pointer
 }
 .filter {
@@ -120,12 +120,12 @@ h1 {
   margin: 8px;
   background: none;
   border: none;
-  border-bottom: 2px solid #d3d3d3;
+  border-bottom: 2px solid var(--gray);
   cursor: pointer;
   transition: 0.5s ease;
 }
 #controls button:hover {
-  background: #eee;
+  background: var(--white);
 }
 /* loading message */
 .loading-div {

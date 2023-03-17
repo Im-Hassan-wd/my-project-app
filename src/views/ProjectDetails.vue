@@ -145,7 +145,7 @@ img.owner{
   background: #fff;
 }
 .code {
-  border: 1px solid #d3d3d3;
+  border: 1px solid var(--gray);
   border-radius: 10px;
 }
 .code ul li {
@@ -153,7 +153,7 @@ img.owner{
   justify-content: space-between;
   align-items: center;
   padding: 8px;
-  border-top: 1px solid #d3d3d3;
+  border-top: 1px solid var(--gray);
   transition: all 0.5s ease;
 }
 .code ul li:hover {
@@ -174,7 +174,7 @@ img.owner{
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #eee;
+  background: var(--white);
 }
 .fold {
   display: flex;

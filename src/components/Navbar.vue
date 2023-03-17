@@ -36,7 +36,7 @@ a {
   padding-top: 20px;
 }
 .router-link-active {
-  border-bottom: 2px solid var(--gray);
+  border-bottom: 2px solid var(--primary);
   font-weight: bold;
 }
 div.owner {
