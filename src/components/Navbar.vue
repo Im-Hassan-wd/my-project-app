@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped> 
 header {
   background: #fff;
   height: 9vh;
@@ -29,14 +29,14 @@ header {
 }
 a {
   display: inline-block;
-  color: #333;
+  color: var(--black);
   text-decoration: none;
   height: 9vh;
   margin-right: 24px;
   padding-top: 20px;
 }
 .router-link-active {
-  border-bottom: 2px solid rgb(190, 190, 190);
+  border-bottom: 2px solid var(--gray);
   font-weight: bold;
 }
 div.owner {
@@ -48,7 +48,7 @@ img {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #eee;
+  background: var(--white)
 }
 button {
   background: none;
