@@ -61,7 +61,7 @@ export default {
 
 <style>
 .project-link {
-  color: #333;
+  color: var(--black);
   text-decoration: none;
 }
 .project-list {
@@ -75,7 +75,7 @@ export default {
   transition: all 0.5s ease;
 }
 .project-list:hover {
-  background: #333;
+  background: var(--black);
   color: #fff;
 }
 .project-list small {
@@ -89,13 +89,13 @@ export default {
 }
 select {
   padding: 7px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid var(--gray);
   border-radius: 5px;
 }
 input {
   width: 100%;
   padding: 10px 16px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid var(--gray);
   margin: 8px 0;
   border-radius: 10px;
 }
@@ -119,7 +119,7 @@ input {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #eee;
+  background: var(--gray);
 }
 .javascript{
   background: #f1e05a;
