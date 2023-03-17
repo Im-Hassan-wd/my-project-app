@@ -7,6 +7,9 @@
         Back to Homepage
       </router-link>
     </div>
+    <div class="img-div">
+      <img src="../assets/404.svg" alt="page not found">
+    </div>
     </div>
 </template>
 
@@ -18,8 +21,10 @@ export default {
 
 <style>
 .not-found {
-  color: #333;
-  background: #eee;
+  display: flex;
+  align-items: center;
+  color: var(--black);
+  background: var(--white);
 }
 .not-found .container {
   margin: 64px auto;
@@ -27,7 +32,7 @@ export default {
   padding: 0 16px;
 }
 .not-found h1 {
-  font-size: 6rem;
+  font-size: 8rem;
   font-weight: bold;
 }
 .not-found p {
@@ -39,7 +44,13 @@ export default {
   display: inline-block;
   margin: 16px 0;
   color: #fff;
-  background: #333;
+  background: var(--primary);
   text-decoration: none;
+}
+.not-found .img-div {
+  width: 500px;
+}
+.not-found img {
+  width: 100%;
 }
 </style>

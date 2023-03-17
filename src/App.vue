@@ -15,6 +15,12 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
+:root {
+  --primary: #BA68C8;
+  --black: #333;
+  --white: #eee;
+  --gray: #d3d3d3;
+}
 * {
   margin: 0;
   padding: 0;
