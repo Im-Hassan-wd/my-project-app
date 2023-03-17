@@ -25,11 +25,9 @@ export default {
   align-items: center;
   color: var(--black);
   background: var(--white);
-}
-.not-found .container {
   margin: 64px auto;
   max-width: 1200px;
-  padding: 0 16px;
+  padding: 0 32px;
 }
 .not-found h1 {
   font-size: 8rem;
@@ -52,5 +50,15 @@ export default {
 }
 .not-found img {
   width: 100%;
+}
+@media (max-width: 746px) {
+  .not-found {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .not-found .img-div {
+    width: 350px;
+    margin-left: 24px;
+  }
 }
 </style>
