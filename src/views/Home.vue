@@ -11,7 +11,7 @@
     <div v-if="error">{{ error }}</div> 
     <!-- if loading data -->
     <div class="project-wrapper" v-if="projects.length">
-      <Project :projects="paginatedData" @toggleUrl="filter" />
+      <Project :projects="paginatedData" @toggleUrl="updateUrl" />
     </div>
     <div v-else class="loading-div">
       <img class="loader-img" src="../assets/loader.png" alt="lader">
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 import Project from "../components/Project.vue"
 // composables
 import getData from '../composables/getData'
@@ -41,18 +41,22 @@ export default {
   name: 'Home',
   components: { Project },
   setup() {
-    let url = ref('https://api.github.com/users/Im-Hassan-wd/repos?per_page=300&sort=created')
-    const filter = () => {
-      url.value = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300'
-      console.log(url.value)
-    }
-    const { projects, error, load} = getData(url.value)
+    let url = ref('https://api.github.com/users/Im-Hassan-wd/repos?per_page=300')
 
+    const updateUrl = () => {
+      url.value = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300&sort=created_at&order=desc'
+    }
+
+    const { projects, error, load} = getData(url.value)
+    
     const handlePaginationValue = handlePagination(projects);
 
-    load()
+    watchEffect(() => {
+      load()
+      console.log(load(), url.value)
+    })
 
-    return { projects, error, filter, ...handlePaginationValue  }
+    return { projects, error, ...handlePaginationValue, updateUrl  }
   }
 }
 </script>

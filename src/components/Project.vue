@@ -45,9 +45,11 @@ export default {
     const matchingProjects = computed(() => {
       return props.projects.filter(project => project.name.toLowerCase().includes(search.value))
     })
+
     const setShowInput = () => {
       showInput.value = !showInput.value
     }
+
     const toggle = () => {
       emit('toggleUrl')
     }
@@ -94,7 +96,7 @@ input {
 }
 .pill {
   display: inline-block;
-  margin: 0px 16px;
+  margin: 8px 16px;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
