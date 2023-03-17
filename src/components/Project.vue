@@ -1,11 +1,11 @@
 <template>
   <div class="filter">
     <!-- <span>Last modified <img src="../assets/down.svg" alt="expand"></span> -->
-    <select @change="$emit('toggleUrl')" name="" id="" v-model="select">
+    <select @change="$emit('toggleUrl')" v-model="select">
       <option value="Last modified">Last modified</option>
       <option value="Ascending">Ascending</option>
     </select>
-    <span @click="setShowInput">Search <img src="../assets/search.svg" alt="search"></span>
+    <span class="search" @click="setShowInput">Search <img src="../assets/search.svg" alt="search"></span>
   </div>
   <input v-if="showInput" type="text" v-model="search" placeholder="Find a project...">
   <router-link v-for="project in matchingProjects" :key="project.node_id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
@@ -98,6 +98,9 @@ input {
   border: 1px solid var(--gray);
   margin: 8px 0;
   border-radius: 10px;
+}
+.search {
+  cursor: pointer;
 }
 .pill {
   display: inline-block;

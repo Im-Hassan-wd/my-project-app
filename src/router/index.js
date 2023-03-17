@@ -9,18 +9,41 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '/project/:id',
+        name: 'ProjectDetails',
+        component: ProjectDetails,
+        props: true
+      },
+    ],
   },
   {
     path: '/favourite-projects',
     name: 'Favourite',
     component: Favourite
   },
+  // redirect
   {
-    path: '/project/:id',
-    name: 'ProjectDetails',
-    component: ProjectDetails,
-    props: true
+    path: '/project',
+    redirect: '/'
+  },
+  {
+    path: '/projects',
+    redirect: '/'
+  },
+  {
+    path: '/favourite',
+    redirect: '/favourite-projects'
+  },
+  {
+    path: '/favourites',
+    redirect: '/favourite-projects'
+  },
+  {
+    path: '/favourite-project',
+    redirect: '/favourite-projects'
   },
   // 404
   {

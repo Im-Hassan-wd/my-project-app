@@ -120,12 +120,13 @@ h1 {
   margin: 8px;
   background: none;
   border: none;
-  border-bottom: 2px solid var(--gray);
+  border-bottom: 2px solid var(--primary);
   cursor: pointer;
   transition: 0.5s ease;
 }
 #controls button:hover {
-  background: var(--white);
+  background: var(--primary);
+  color: #fff;
 }
 /* loading message */
 .loading-div {

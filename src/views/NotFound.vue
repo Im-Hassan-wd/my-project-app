@@ -57,7 +57,7 @@ export default {
     align-items: flex-start;
   }
   .not-found .img-div {
-    width: 350px;
+    width: 300px;
     margin-left: 24px;
   }
 }
