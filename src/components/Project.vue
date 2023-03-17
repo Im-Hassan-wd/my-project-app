@@ -43,7 +43,7 @@ export default {
     const select = ref('Last modified')
     // functions
     const matchingProjects = computed(() => {
-      return props.projects.filter(project => project.name.toLowerCase().includes(search.value))
+      return props.projects.filter(project => project.name.toLowerCase().includes(search.value.toLowerCase()))
     })
 
     const setShowInput = () => {
@@ -86,6 +86,11 @@ export default {
   align-items: center;
   max-width: 500px;
   justify-content: space-between;
+}
+select {
+  padding: 7px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
 }
 input {
   width: 100%;
