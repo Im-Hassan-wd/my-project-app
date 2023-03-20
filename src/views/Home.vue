@@ -42,20 +42,17 @@ export default {
   name: 'Home',
   components: { Project },
   setup() {
-    let url = ref('https://api.github.com/users/Im-Hassan-wd/repos?per_page=300')
+    let url = ref('https://api.github.com/users/Im-Hassan-wd/repos?per_page=300&sort=created_at&order=desc')
 
     const updateUrl = () => {
-      url.value = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300&sort=created_at&order=desc'
+      url.value = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300'
     }
 
     const { projects, error, load} = getData(url.value)
     
     const handlePaginationValue = handlePagination(projects);
 
-    watchEffect(() => {
-      load()
-      console.log(load(), url.value)
-    })
+    load()
 
     return { projects, error, ...handlePaginationValue, updateUrl  }
   }

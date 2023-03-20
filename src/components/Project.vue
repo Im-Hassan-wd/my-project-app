@@ -1,6 +1,5 @@
 <template>
   <div class="filter">
-    <!-- <span>Last modified <img src="../assets/down.svg" alt="expand"></span> -->
     <!-- <select @change="$emit('toggleUrl')" v-model="select">
       <option value="Last modified">Last modified</option>
       <option value="Ascending">Ascending</option>
@@ -12,7 +11,7 @@
     <ul class="project-list">
       <li class="project-title">
         <h4>{{ project.name }}</h4>
-        <small>Edited {{ project.updated_at }}</small>
+        <small>Edited {{ formatDistance(new Date(project.updated_at.slice(0, 10).replace(/-/gi, ', ')), new Date(year, month, day)) }}</small>
       </li>
       <div>
         <li class="fork">
@@ -31,6 +30,7 @@
 
 <script>
 import { computed, ref, } from 'vue'
+import { formatDistance } from 'date-fns'
 
 export default {
   name: 'Project',
@@ -54,7 +54,11 @@ export default {
       emit('toggleUrl')
     }
 
-    return { search, matchingProjects, select, showInput, setShowInput, toggle };
+    const day = new Date().getDate()
+    const month = new Date().getMonth()
+    const year = new Date().getFullYear()
+
+    return { search, matchingProjects, select, showInput, setShowInput, toggle, day, month, year, formatDistance };
   }
 }
 </script>

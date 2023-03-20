@@ -6,11 +6,8 @@
     <!-- if this an error -->
     <div v-if="error">{{ error }}</div>
     <!-- if loading data -->
-    <div v-if="project.length === '0'" class="loading-div">
-      <img class="loader-img" src="../assets/loader.png" alt="lader">
-    </div>
-    <div else class="">
-      <h1>{{ project.name }}</h1>
+    <div class="">
+      <h1 v-if="project.name.includes('_')">{{ project.name.replace(/_/gi, '-') }}</h1>
       <table>
         <thead>
           <tr>
@@ -62,6 +59,9 @@
         </div>
       </div>
     </div>
+    <!-- <div class="loading-div">
+      <img class="loader-img" src="../assets/loader.png" alt="lader">
+    </div> -->
   </div>
 </template>
 
