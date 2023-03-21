@@ -7,8 +7,8 @@
     <div v-if="error">{{ error }}</div>
     <!-- if loading data -->
     <div class="">
-      <!-- <h1 v-if="project.name.includes('_')">{{ project.name.replace(/_/gi, '-') }}</h1> -->
-      <h1>{{ project.name }}</h1>
+      <h1 v-if="project.name.includes('_')">{{ project.name.replace(/_/gi, '-') }}</h1>
+      <h1 v-else>{{ project.name }}</h1>
       <table>
         <thead>
           <tr>

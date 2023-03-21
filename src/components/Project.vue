@@ -10,13 +10,14 @@
   <router-link v-for="project in matchingProjects" :key="project.node_id" class="project-link" :to="{ name: 'ProjectDetails', params: { id: project.name } }">
     <ul class="project-list">
       <li class="project-title">
-        <h4>{{ project.name }}</h4>
-        <small>Edited {{ formatDistance(new Date(project.updated_at.slice(0, 10).replace(/-/gi, ', ')), new Date(year, month, day)) }}</small>
+        <h4 v-if="project.name.includes('_')">{{ project.name.replace(/_/gi, '-') }}</h4>
+        <h4 v-else>{{ project.name.replace(/_/gi, '-') }}</h4>
+        <small>Updated {{ formatDistance(new Date(project.updated_at.slice(0, 10).replace(/-/gi, ', ')), new Date(year, month, day)) }} ago</small>
       </li>
       <div>
         <li class="fork">
           <img src="../assets/fork.svg" alt="fork">
-          <small>{{ project.forks_count }}</small>
+          <small>{{ project.stargazers_count }}</small>
         </li>
         <li v-if="project.language" :class=" [project.language ? project.language.toLowerCase() : '', 'pill']">{{ project.language }}</li>
         <li v-else class="pill">...</li>
@@ -54,6 +55,7 @@ export default {
       emit('toggleUrl')
     }
 
+    // get current date
     const day = new Date().getDate()
     const month = new Date().getMonth()
     const year = new Date().getFullYear()
