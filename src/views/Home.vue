@@ -1,5 +1,4 @@
 <template>
-  <!-- <router-view></router-view> -->
   <div class="project-div">
     <div class="header">
       <h1>Projects</h1>
@@ -42,7 +41,7 @@ export default {
   name: 'Home',
   components: { Project },
   setup() {
-    let url = ref('https://api.github.com/users/Im-Hassan-wd/repos?per_page=300&sort=created_at&order=desc')
+    let url = ref('https://api.github.com/users/Im-Hassan-wd/repos?per_page=300')
 
     const updateUrl = () => {
       url.value = 'https://api.github.com/users/Im-Hassan-wd/repos?per_page=300'
